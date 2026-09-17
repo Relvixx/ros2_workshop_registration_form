@@ -84,4 +84,17 @@ const stripped = regClient.replace(/not bank-verified/gi, "");
 assert.ok(!/(payment|bank|transaction)[ -]?verified/i.test(stripped), "must not claim bank verification");
 assert.ok(/Payment proof received/i.test(regClient), "must show 'Payment proof received'");
 
+// --- WhatsApp CTA guard: present once, only in the confirmed (done) block,
+// with correct link, label, and safe new-tab attributes ---
+const WA_URL = "https://chat.whatsapp.com/BlbJIp8V1Zi3Ao84G2OLyB";
+assert.equal(regClient.split(WA_URL).length - 1, 0, "invite link lives in config, not hardcoded in component");
+const workshopCfg = await import("node:fs").then((fs) => fs.readFileSync("src/config/workshop.ts", "utf8"));
+assert.ok(workshopCfg.includes(WA_URL), "config holds WhatsApp group URL");
+assert.ok(workshopCfg.includes("Join WhatsApp Group for Updates"), "config holds WhatsApp CTA label");
+const doneBlock = regClient.slice(regClient.indexOf('step === "done"'));
+assert.ok(doneBlock.includes("whatsappGroupUrl"), "CTA rendered in done block");
+assert.ok(doneBlock.includes('target="_blank"') && doneBlock.includes('rel="noopener noreferrer"'), "safe new-tab link");
+const beforeDone = regClient.slice(0, regClient.indexOf('step === "done"'));
+assert.ok(!beforeDone.includes("whatsappGroupUrl") && !beforeDone.includes("<WhatsAppIcon"), "no WhatsApp CTA before confirmation");
+
 console.log("selftest: all assertions passed");

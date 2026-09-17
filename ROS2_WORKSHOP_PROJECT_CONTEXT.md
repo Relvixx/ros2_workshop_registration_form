@@ -354,6 +354,18 @@ Offline Workshop
 ₹1,500 Payment Proof Received
 ```
 
+After successful registration, show an optional WhatsApp group CTA
+(only in the confirmed success state — never before registration, on the
+payment step, on errors, or when the workshop is full):
+
+- Heading: Stay Updated
+- Copy: Get workshop announcements, instructions, and important updates on WhatsApp.
+- Label: "Join WhatsApp Group for Updates"
+- Group link: https://chat.whatsapp.com/BlbJIp8V1Zi3Ao84G2OLyB
+  (open in a new tab with `rel="noopener noreferrer"`)
+- Joining the WhatsApp group is optional and has no effect on registration status.
+- Do not record whether the user clicked the button.
+
 ---
 
 # 12. Admin Requirements

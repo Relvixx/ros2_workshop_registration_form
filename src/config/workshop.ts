@@ -64,6 +64,11 @@ export const WORKSHOP = {
   paymentWarning:
     "Your seat is confirmed only after your payment proof is successfully submitted. Opening this payment page does not reserve a seat.",
 
+  whatsappGroupUrl: "https://chat.whatsapp.com/BlbJIp8V1Zi3Ao84G2OLyB",
+  whatsappCtaLabel: "Join WhatsApp Group for Updates",
+  whatsappNote:
+    "Get workshop announcements, instructions, and important updates on WhatsApp.",
+
   siteTitle: "Unlocking Robotics with ROS2 | MET Automation & Robotics",
   siteDescription:
     "Register for the 5-day hands-on ROS2 workshop organized by the Department of Automation & Robotics at MET. Offline · 28 Sep – 02 Oct 2026 · ₹1,500 · 30 seats.",
