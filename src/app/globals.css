@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette — restrained, university-appropriate, robotics-technical */
+  --color-paper: #f6f7f9;
+  --color-card: #ffffff;
+  --color-navy-950: #0a1633;
+  --color-navy-900: #0f2050;
+  --color-navy-800: #16294f;
+  --color-navy-700: #1f3a6b;
+  --color-cobalt-600: #1d4ed8;
+  --color-cobalt-500: #2456e6;
+  --color-cobalt-100: #dbe5ff;
+  --color-cobalt-50: #eef3ff;
+  --color-magenta-600: #c0266b;
+  --color-magenta-50: #fdf0f6;
+  --color-ink-900: #17202b;
+  --color-ink-600: #47536a;
+  --color-ink-500: #5b6a85;
+  --color-line: #dde3ee;
+  --color-mint-600: #0e7c5b;
+  --color-mint-50: #e9f7f1;
+  --color-amber-700: #92400e;
+  --color-amber-50: #fef6e7;
+  --color-rose-700: #b4232f;
+  --color-rose-50: #fdeef0;
+
+  --shadow-card: 0 1px 2px rgb(10 22 51 / 0.06), 0 8px 28px -12px rgb(10 22 51 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(10 22 51 / 0.08), 0 18px 44px -16px rgb(10 22 51 / 0.28);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-dash: dash 3.2s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Visible, consistent keyboard focus */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-cobalt-500);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Subtle technical grid backdrop for hero */
+.bg-blueprint {
+  background-image:
+    linear-gradient(rgb(29 78 216 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(29 78 216 / 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 20%, black 55%, transparent 100%);
+}
+
+/* Scroll-triggered reveal (progressive enhancement; content visible without JS) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

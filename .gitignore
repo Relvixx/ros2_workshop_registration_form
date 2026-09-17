@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+.next/
+out/
+dist/
+
+# env — never commit real secrets
+.env
+.env.local
+.env*.local
+.env.production
+.env*.production
+
+# build artifacts
+tsconfig.tsbuildinfo
+
+# supabase CLI
+.branches
+.temp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
